@@ -2552,4 +2552,105 @@
         state.maxPrice = els.maxPrice.value ? Number(els.maxPrice.value) : null;
         state.tags = new Set([...document.querySelectorAll('.filter-tag:checked')].map(i => i.value));
         state.inStockOnly = els.inStockOnly.checked;
-        renderCa
+        renderCategory();
+      }
+
+      ['input', 'change'].forEach(evt => {
+        els.minPrice.addEventListener(evt, syncFilters);
+        els.maxPrice.addEventListener(evt, syncFilters);
+        els.inStockOnly.addEventListener(evt, syncFilters);
+      });
+      document.querySelectorAll('.filter-tag').forEach(chk => chk.addEventListener('change', syncFilters));
+
+      els.clearFiltersBtn.addEventListener('click', () => {
+        els.minPrice.value = '';
+        els.maxPrice.value = '';
+        els.inStockOnly.checked = false;
+        document.querySelectorAll('.filter-tag').forEach(i => i.checked = false);
+        state.quickChip = 'all';
+        state.selectedCategory = 'all';
+        document.querySelectorAll('[data-category-nav]').forEach(link => link.classList.remove('is-current'));
+        document.querySelectorAll('.cat-pill').forEach(link => link.classList.remove('is-current'));
+        document.querySelectorAll('[data-chip]').forEach(c => c.classList.toggle('active', c.dataset.chip === 'all'));
+        syncFilters();
+      });
+
+      els.cartOpen.addEventListener('click', openCart);
+      els.cartClose.addEventListener('click', closeAllPanels);
+      els.overlay.addEventListener('click', closeAllPanels);
+      els.clearCart.addEventListener('click', () => { state.cart = []; renderCart(); });
+      els.favoritesOpen?.addEventListener('click', () => {
+        els.overlay.classList.add('show');
+        els.favoritesDrawer.classList.add('show');
+        els.favoritesDrawer.setAttribute('aria-hidden', 'false');
+      });
+      els.favoritesClose?.addEventListener('click', closeAllPanels);
+      els.favoritesClear?.addEventListener('click', () => {
+        state.favorites = [];
+        renderFeatured();
+        renderCategory();
+        renderDealCarousel();
+        renderFavorites();
+      });
+      els.orderWhatsapp.addEventListener('click', () => {
+        if (!state.cart.length) return;
+        window.open(whatsappUrlForCart(), '_blank', 'noopener,noreferrer');
+      });
+      els.joinWhatsappChannel?.addEventListener('click', () => {
+        window.open(whatsappChannelUrl, '_blank', 'noopener,noreferrer');
+      });
+      els.dealWhatsappBtn?.addEventListener('click', () => {
+        window.open(whatsappChannelUrl, '_blank', 'noopener,noreferrer');
+      });
+      els.dealPrev?.addEventListener('click', () => moveDeal(-1));
+      els.dealNext?.addEventListener('click', () => moveDeal(1));
+      els.proofPrev?.addEventListener('click', () => moveProof(-1));
+      els.proofNext?.addEventListener('click', () => moveProof(1));
+      window.addEventListener('resize', syncProofCarousel);
+
+      els.mobileMenuOpen.addEventListener('click', () => {
+        els.overlay.classList.add('show');
+        els.mobileMenu.classList.add('show');
+      });
+      els.mobileFilterOpen?.addEventListener('click', () => {
+        els.overlay.classList.add('show');
+        els.mobileFilters.classList.add('show');
+      });
+      els.mobileFilterClose.addEventListener('click', closeAllPanels);
+      els.modalClose.addEventListener('click', closeAllPanels);
+      els.modalAddCart.addEventListener('click', () => {
+        if (state.selectedProductId) addToCart(state.selectedProductId);
+      });
+      els.modalOrderNow.addEventListener('click', () => {
+        if (!state.selectedProductId) return;
+        window.open(whatsappUrlForSingleProduct(state.selectedProductId), '_blank', 'noopener,noreferrer');
+      });
+    }
+
+    function mountScrollAnimations() {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('in');
+        });
+      }, { threshold: .14 });
+      document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
+    }
+
+    function initFromHash() {
+      const map = { '#home': 'home', '#category': 'category' };
+      const route = map[location.hash] || 'home';
+      setRoute(route);
+    }
+
+    renderFeatured();
+    renderDealCarousel();
+    renderFavorites();
+    renderProofCarousel();
+    renderCategory();
+    renderCart();
+    attachEvents();
+    mountScrollAnimations();
+    initFromHash();
+  </script>
+</body>
+</html>
