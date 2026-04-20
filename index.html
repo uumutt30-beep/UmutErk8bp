@@ -2359,4 +2359,25 @@
         entries.forEach(entry => {
           if (entry.isIntersecting) entry.target.classList.add('in');
         });
- 
+      }, { threshold: .14 });
+      document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
+    }
+
+    function initFromHash() {
+      const map = { '#home': 'home', '#category': 'category' };
+      const route = map[location.hash] || 'home';
+      setRoute(route);
+    }
+
+    renderFeatured();
+    renderDealCarousel();
+    renderFavorites();
+    renderProofCarousel();
+    renderCategory();
+    renderCart();
+    attachEvents();
+    mountScrollAnimations();
+    initFromHash();
+  </script>
+</body>
+</html>
