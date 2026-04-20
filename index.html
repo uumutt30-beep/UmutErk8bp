@@ -300,13 +300,54 @@
     .header-cats {
       border-bottom: 1px solid #233362;
       background: #0a112b;
-      padding: 14px 0 10px;
+      padding: 20px 0 16px;
     }
-    .header-cats-row {
+    .cats-carousel-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 44px;
+    }
+    .cats-track {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 10px 4px;
+      width: 100%;
+      justify-content: center;
+    }
+    .cats-track::-webkit-scrollbar {
+      display: none;
+    }
+    .cats-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(90, 118, 255, .5);
+      background: rgba(19, 34, 83, .9);
+      color: #e8eeff;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10;
       display: grid;
-      grid-template-columns: repeat(6, minmax(100px, 1fr));
-      gap: 16px;
+      place-items: center;
+      transition: all .2s var(--easing);
+      backdrop-filter: blur(4px);
     }
+    .cats-nav:hover {
+      background: rgba(90, 118, 255, .3);
+      border-color: rgba(143, 156, 255, .8);
+      transform: translateY(-50%) scale(1.05);
+    }
+    .cats-prev { left: 0; }
+    .cats-next { right: 0; }
     .cat-pill {
       border: 0;
       background: transparent;
@@ -314,22 +355,27 @@
       cursor: pointer;
       display: grid;
       justify-items: center;
-      gap: 12px;
+      gap: 14px;
       padding: 0;
+      flex-shrink: 0;
+      transition: transform .2s var(--easing);
+    }
+    .cat-pill:hover {
+      transform: translateY(-2px);
     }
     .cat-pill .bubble {
       width: 100%;
-      max-width: 150px;
+      max-width: 170px;
       aspect-ratio: 1 / 1;
-      border-radius: 999px;
-      border: 2px solid rgba(90, 118, 255, .4);
+      border-radius: 50%;
+      border: 3px solid rgba(90, 118, 255, .5);
       background: center/cover no-repeat;
       display: grid;
       place-items: center;
       box-shadow: 
-        inset 0 0 0 1px rgba(255,255,255,.08), 
-        0 10px 30px rgba(0, 0, 0, .4),
-        0 0 20px rgba(90, 118, 255, .15);
+        inset 0 0 0 1px rgba(255,255,255,.1), 
+        0 12px 35px rgba(0, 0, 0, .45),
+        0 0 25px rgba(90, 118, 255, .2);
       transition: transform var(--tr-fast), border-color var(--tr-fast), box-shadow var(--tr-fast);
     }
     /* 6 Kategori için özel görseller */
@@ -355,33 +401,33 @@
       content: none;
     }
     .cat-pill span {
-      font-size: 15px;
-      font-weight: 600;
-      color: #e8eeff;
+      font-size: 16px;
+      font-weight: 700;
+      color: #f0f4ff;
       text-align: center;
       line-height: 1.3;
       text-shadow: 
-        0 0 10px rgba(90, 118, 255, .5),
-        0 0 20px rgba(90, 118, 255, .3),
-        0 0 30px rgba(90, 118, 255, .2);
+        0 0 12px rgba(90, 118, 255, .6),
+        0 0 24px rgba(90, 118, 255, .4),
+        0 0 36px rgba(90, 118, 255, .2);
       letter-spacing: .3px;
+      white-space: nowrap;
     }
     .cat-pill:hover .bubble,
     .cat-pill.is-current .bubble {
-      transform: translateY(-4px) scale(1.03);
-      border-color: rgba(143, 156, 255, .8);
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(143, 156, 255, .9);
       box-shadow: 
-        inset 0 0 0 1px rgba(255,255,255,.12), 
-        0 15px 35px rgba(0, 0, 0, .5),
-        0 0 30px rgba(143, 156, 255, .4);
+        inset 0 0 0 1px rgba(255,255,255,.15), 
+        0 18px 40px rgba(0, 0, 0, .55),
+        0 0 35px rgba(143, 156, 255, .5);
     }
     .cat-pill:hover span,
     .cat-pill.is-current span { 
       color: #ffffff; 
-      font-weight: 700;
       text-shadow: 
-        0 0 15px rgba(143, 156, 255, .8),
-        0 0 30px rgba(143, 156, 255, .5),
+        0 0 15px rgba(143, 156, 255, .9),
+        0 0 30px rgba(143, 156, 255, .6),
         0 0 45px rgba(143, 156, 255, .3);
     }
 
@@ -1437,24 +1483,44 @@
       
       /* Kategori yuvarlakları - Daha büyük */
       .header-cats {
-        padding: 20px 0 16px;
+        padding: 24px 0 20px;
       }
       
-      .header-cats-row {
-        grid-template-columns: repeat(2, minmax(110px, 1fr));
-        gap: 20px 16px;
-        row-gap: 24px;
+      /* Kategori carousel mobil */
+      .cats-carousel-wrapper {
+        padding: 0 50px;
+      }
+      
+      .cats-track {
+        gap: 16px;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      .cat-pill {
+        scroll-snap-align: center;
       }
       
       .cat-pill .bubble { 
-        max-width: 150px;
+        max-width: 145px;
         border-width: 3px;
       }
       
       .cat-pill span { 
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 700;
       }
+      
+      .cats-nav {
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+        background: rgba(19, 34, 83, .95);
+      }
+      
+      .cats-prev { left: 2px; }
+      .cats-next { right: 2px; }
       
       /* Ürün grid - 2 sütun */
       .products { 
@@ -1744,31 +1810,37 @@
     </div>
   </header>
   <section class="header-cats">
-    <div class="container header-cats-row">
-      <button class="cat-pill is-current" data-category-nav="coin" data-route="category">
-        <span class="bubble"></span>
-        <span>Çip Paketleri</span>
-      </button>
-      <button class="cat-pill" data-category-nav="cash" data-route="category">
-        <span class="bubble"></span>
-        <span>Cash Paketleri</span>
-      </button>
-      <button class="cat-pill" data-category-nav="box" data-route="category">
-        <span class="bubble"></span>
-        <span>Efsanevi Kutular</span>
-      </button>
-      <button class="cat-pill" data-category-nav="cue" data-route="category">
-        <span class="bubble"></span>
-        <span>Efsanevi İstekalar</span>
-      </button>
-      <button class="cat-pill" data-category-nav="collection" data-route="category">
-        <span class="bubble"></span>
-        <span>Koleksiyon Kutuları</span>
-      </button>
-      <button class="cat-pill" data-category-nav="golden" data-route="category">
-        <span class="bubble"></span>
-        <span>Golden Shot</span>
-      </button>
+    <div class="container">
+      <div class="cats-carousel-wrapper">
+        <button class="cats-nav cats-prev" id="catsPrev" aria-label="Önceki kategori">‹</button>
+        <div class="cats-track" id="catsTrack">
+          <button class="cat-pill is-current" data-category-nav="coin" data-route="category">
+            <span class="bubble"></span>
+            <span>Çip Paketleri</span>
+          </button>
+          <button class="cat-pill" data-category-nav="cash" data-route="category">
+            <span class="bubble"></span>
+            <span>Cash Paketleri</span>
+          </button>
+          <button class="cat-pill" data-category-nav="box" data-route="category">
+            <span class="bubble"></span>
+            <span>Efsanevi Kutular</span>
+          </button>
+          <button class="cat-pill" data-category-nav="cue" data-route="category">
+            <span class="bubble"></span>
+            <span>Efsanevi İstekalar</span>
+          </button>
+          <button class="cat-pill" data-category-nav="collection" data-route="category">
+            <span class="bubble"></span>
+            <span>Koleksiyon Kutuları</span>
+          </button>
+          <button class="cat-pill" data-category-nav="golden" data-route="category">
+            <span class="bubble"></span>
+            <span>Golden Shot</span>
+          </button>
+        </div>
+        <button class="cats-nav cats-next" id="catsNext" aria-label="Sonraki kategori">›</button>
+      </div>
     </div>
   </section>
 
@@ -2607,6 +2679,65 @@
       els.proofPrev?.addEventListener('click', () => moveProof(-1));
       els.proofNext?.addEventListener('click', () => moveProof(1));
       window.addEventListener('resize', syncProofCarousel);
+
+      // Kategori carousel navigasyon
+      const catsPrev = document.getElementById('catsPrev');
+      const catsNext = document.getElementById('catsNext');
+      const catsTrack = document.getElementById('catsTrack');
+      
+      if (catsPrev && catsNext && catsTrack) {
+        const scrollAmount = 200;
+        
+        catsPrev.addEventListener('click', () => {
+          catsTrack.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+        
+        catsNext.addEventListener('click', () => {
+          catsTrack.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+        
+        // Touch/Swipe desteği
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        
+        catsTrack.addEventListener('mousedown', (e) => {
+          isDown = true;
+          catsTrack.style.cursor = 'grabbing';
+          startX = e.pageX - catsTrack.offsetLeft;
+          scrollLeft = catsTrack.scrollLeft;
+        });
+        
+        catsTrack.addEventListener('mouseleave', () => {
+          isDown = false;
+          catsTrack.style.cursor = 'grab';
+        });
+        
+        catsTrack.addEventListener('mouseup', () => {
+          isDown = false;
+          catsTrack.style.cursor = 'grab';
+        });
+        
+        catsTrack.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - catsTrack.offsetLeft;
+          const walk = (x - startX) * 2;
+          catsTrack.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Touch events for mobile
+        catsTrack.addEventListener('touchstart', (e) => {
+          startX = e.touches[0].pageX - catsTrack.offsetLeft;
+          scrollLeft = catsTrack.scrollLeft;
+        }, { passive: true });
+        
+        catsTrack.addEventListener('touchmove', (e) => {
+          const x = e.touches[0].pageX - catsTrack.offsetLeft;
+          const walk = (x - startX) * 2;
+          catsTrack.scrollLeft = scrollLeft - walk;
+        }, { passive: true });
+      }
 
       els.mobileMenuOpen.addEventListener('click', () => {
         els.overlay.classList.add('show');
