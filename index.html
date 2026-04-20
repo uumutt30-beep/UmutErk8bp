@@ -1388,29 +1388,313 @@
       .deal-item.near-right:hover { transform: translateX(calc(-50% + var(--deal-offset))) scale(.75) !important; }
     }
     @media (max-width: 640px) {
-      .topbar { font-size: 12px; }
-      .search-wrap { display: none; }
-      .products { grid-template-columns: 1fr; }
-      .feature-grid { grid-template-columns: 1fr; }
-      .hot-strip { grid-template-columns: 1fr; }
-      .footer-grid, .grid-2 { grid-template-columns: 1fr; }
-      .hero-main { min-height: 0; }
-      .modal-grid { grid-template-columns: 1fr; }
-      .wa-channel { flex-direction: column; align-items: stretch; }
-      .header-cats-row {
-        grid-template-columns: repeat(2, minmax(90px, 1fr));
-        row-gap: 16px;
+      /* Temel mobil optimizasyonları - %15-20 büyütme */
+      :root {
+        --header-h: 70px;
       }
-      .cat-pill .bubble { max-width: 120px; }
-      .cat-pill span { font-size: 12px; }
-      .social-proof-grid { padding: 12px 44px; }
-      .proof-track { grid-template-columns: 1fr; }
-      .deal-stage { height: 470px; }
-      .deal-item.near-left, .deal-item.near-right { opacity: 0; pointer-events: none; }
-      .deal-item.active { transform: translateX(-50%) scale(1); }
-      .deal-item.active:hover { transform: translateX(-50%) scale(1) !important; }
-      .deal-nav { width: 40px; height: 40px; }
-      .deal-hover-sheet { display: none; }
+      
+      .topbar { 
+        font-size: 13px; 
+        padding: 8px 0;
+      }
+      
+      .search-wrap { display: none; }
+      
+      /* Header butonları büyütme */
+      .icon-btn {
+        min-width: 48px;
+        height: 48px;
+        font-size: 20px;
+      }
+      
+      .header-fav small {
+        font-size: 11px;
+      }
+      
+      /* Navigasyon yazıları */
+      .nav-link {
+        padding: 12px 14px;
+        font-size: 15px;
+      }
+      
+      /* Hero bölümü */
+      .hero-overlay {
+        padding: 24px 20px;
+      }
+      
+      .hero-overlay h1 {
+        font-size: clamp(26px, 6vw, 36px);
+      }
+      
+      .hero-overlay p {
+        font-size: 15px;
+      }
+      
+      .hero-btn {
+        padding: 16px 32px !important;
+        font-size: 16px !important;
+      }
+      
+      /* Kategori yuvarlakları - Daha büyük */
+      .header-cats {
+        padding: 20px 0 16px;
+      }
+      
+      .header-cats-row {
+        grid-template-columns: repeat(2, minmax(110px, 1fr));
+        gap: 20px 16px;
+        row-gap: 24px;
+      }
+      
+      .cat-pill .bubble { 
+        max-width: 150px;
+        border-width: 3px;
+      }
+      
+      .cat-pill span { 
+        font-size: 15px;
+        font-weight: 700;
+      }
+      
+      /* Ürün grid - 2 sütun */
+      .products { 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+      
+      /* Ürün kartları */
+      .product-card {
+        min-height: auto;
+      }
+      
+      .product-title {
+        font-size: 15px;
+        min-height: 44px;
+      }
+      
+      .product-sub {
+        font-size: 13px;
+      }
+      
+      .price {
+        font-size: 20px;
+      }
+      
+      .btn {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+      
+      /* Feature grid */
+      .feature-grid { 
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      
+      .feature {
+        padding: 18px;
+        min-height: 110px;
+      }
+      
+      .feature b {
+        font-size: 15px;
+      }
+      
+      .feature span {
+        font-size: 13px;
+      }
+      
+      /* Hot strip butonları - Çok daha büyük */
+      .hot-strip { 
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      
+      .hot-chip {
+        padding: 16px 14px;
+        font-size: 14px;
+        font-weight: 800;
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      /* Chip'ler */
+      .chip {
+        font-size: 13px;
+        padding: 8px 14px;
+      }
+      
+      /* Filtreler */
+      .chips {
+        gap: 10px;
+      }
+      
+      /* Footer grid */
+      .footer-grid, .grid-2 { 
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      
+      .footer h4 {
+        font-size: 16px;
+      }
+      
+      .footer a, .footer p {
+        font-size: 14px;
+      }
+      
+      /* Hero main */
+      .hero-main { 
+        min-height: 0; 
+        border-radius: 20px;
+      }
+      
+      /* Modal */
+      .modal-grid { 
+        grid-template-columns: 1fr; 
+      }
+      
+      /* WhatsApp kanal */
+      .wa-channel { 
+        flex-direction: column; 
+        align-items: stretch;
+        padding: 20px;
+        gap: 16px;
+      }
+      
+      .wa-channel strong {
+        font-size: 18px;
+      }
+      
+      .wa-channel p {
+        font-size: 15px !important;
+      }
+      
+      .wa-btn {
+        width: 100%;
+        padding: 16px !important;
+        font-size: 16px !important;
+      }
+      
+      /* Deal carousel */
+      .deal-stage { 
+        height: 420px; 
+      }
+      
+      .deal-item.near-left, .deal-item.near-right { 
+        opacity: 0; 
+        pointer-events: none; 
+      }
+      
+      .deal-item.active { 
+        transform: translateX(-50%) scale(1); 
+      }
+      
+      .deal-item.active:hover { 
+        transform: translateX(-50%) scale(1) !important; 
+      }
+      
+      .deal-nav { 
+        width: 48px; 
+        height: 48px;
+        font-size: 24px;
+      }
+      
+      .deal-hover-sheet { 
+        display: none; 
+      }
+      
+      /* Yorumlar */
+      .social-proof-grid { 
+        padding: 16px; 
+      }
+      
+      .proof-card {
+        padding: 18px;
+        min-height: 140px;
+      }
+      
+      .proof-user {
+        font-size: 15px;
+      }
+      
+      .proof-text {
+        font-size: 14px;
+      }
+      
+      /* Drawer */
+      .drawer {
+        width: 100%;
+      }
+      
+      .drawer-head, .drawer-foot {
+        padding: 18px;
+      }
+      
+      .drawer-body {
+        padding: 18px;
+      }
+      
+      /* Cart item */
+      .cart-item {
+        padding: 12px;
+        gap: 14px;
+      }
+      
+      .cart-item img {
+        width: 80px;
+        height: 80px;
+      }
+      
+      /* Section başlıkları */
+      .section-head h2 {
+        font-size: 22px;
+      }
+      
+      .section-head p {
+        font-size: 14px;
+      }
+      
+      /* Mini banner */
+      .mini-banner {
+        min-height: 200px;
+      }
+      
+      .mini-banner .overlay {
+        padding: 24px;
+      }
+      
+      /* Filtre butonu */
+      .mobile-filter-btn {
+        padding: 12px 20px;
+        font-size: 15px;
+      }
+      
+      /* Sort select */
+      .sort-select {
+        height: 44px;
+        font-size: 14px;
+      }
+      
+      /* Price inputs */
+      .price-inputs input {
+        height: 44px;
+        font-size: 15px;
+      }
+      
+      /* Filter items */
+      .filter-item {
+        font-size: 15px;
+        padding: 10px 0;
+      }
+      
+      /* Checkbox */
+      .filter-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1493,7 +1777,7 @@
       <div class="hero">
         <div class="container hero-grid">
           <article class="hero-main" data-animate>
-            <img src="giriş.png" alt="Umuterk giris gorseli">
+            <img src="deneme.jpg" alt="Umuterk giris gorseli">
             <div class="hero-overlay">
               <span class="hero-chip">UMUTERK'e Hos Geldin</span>
               <h1>Umuterk ile Guvenli, Hizli ve Premium Oyun Alisveris Deneyimi</h1>
@@ -1505,33 +1789,6 @@
           </article>
         </div>
       </div>
-
-      <section class="section">
-        <div class="container">
-          <div class="section-head">
-            <h2>Neden Bizi Tercih Etmelisin?</h2>
-            <p>Tamamen geçici metinlerden oluşan açıklama alanı</p>
-          </div>
-          <div class="feature-grid">
-            <article class="feature" data-animate><b>Hızlı Teslimat</b><span>Placeholder açıklama metni ve örnek detay bilgisi.</span></article>
-            <article class="feature" data-animate><b>7/24 Destek</b><span>Placeholder açıklama metni ve örnek detay bilgisi.</span></article>
-            <article class="feature" data-animate><b>Güvenli Ödeme</b><span>Placeholder açıklama metni ve örnek detay bilgisi.</span></article>
-            <article class="feature" data-animate><b>Yüksek Memnuniyet</b><span>Placeholder açıklama metni ve örnek detay bilgisi.</span></article>
-          </div>
-          <div class="hot-strip" data-animate>
-            <a class="hot-chip hot-chip-link" href="best-sellers.html">EN COK SATANLAR</a>
-            <a class="hot-chip hot-chip-link" href="discounted-packages.html">INDIRIMLI PAKETLER</a>
-            <a class="hot-chip hot-chip-link" href="today-offers.html">BUGUNE OZEL TEKLIFLER</a>
-          </div>
-          <div class="wa-channel" data-animate>
-            <div>
-              <strong>WhatsApp Kanalimiza Katil</strong>
-              <p style="margin:6px 0 0;color:#bde8d6;font-size:14px;">Yeni urun, stok ve indirim duyurulari icin WhatsApp kanalina gecis yap.</p>
-            </div>
-            <button class="btn wa-btn" id="joinWhatsappChannel">WhatsApp Kanalina Git</button>
-          </div>
-        </div>
-      </section>
 
       <section class="section" id="categoryAnchor">
         <div class="container">
@@ -1572,17 +1829,33 @@
       </section>
 
       <section class="section">
-        <div class="container mini-banner" data-animate>
-          <img src="deneme.png" alt="Alt banner">
-          <div class="overlay">
+        <div class="container">
+          <div class="section-head">
+            <h2>Neden Bizi Tercih Etmelisin?</h2>
+            <p>Tamamen geçici metinlerden oluşan açıklama alanı</p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature" data-animate><b>Hızlı Teslimat</b><span>Placeholder açıklama metni ve örnek detay bilgisi.</span></article>
+            <article class="feature" data-animate><b>7/24 Destek</b><span>Placeholder açıklama metni ve örnek detay bilgisi.</span></article>
+            <article class="feature" data-animate><b>Güvenli Ödeme</b><span>Placeholder açıklama metni ve örnek detay bilgisi.</span></article>
+            <article class="feature" data-animate><b>Yüksek Memnuniyet</b><span>Placeholder açıklama metni ve örnek detay bilgisi.</span></article>
+          </div>
+          <div class="hot-strip" data-animate>
+            <a class="hot-chip hot-chip-link" href="best-sellers.html">EN COK SATANLAR</a>
+            <a class="hot-chip hot-chip-link" href="discounted-packages.html">INDIRIMLI PAKETLER</a>
+            <a class="hot-chip hot-chip-link" href="today-offers.html">BUGUNE OZEL TEKLIFLER</a>
+            <a class="hot-chip hot-chip-link" href="accounts.html">HESAPLAR</a>
+          </div>
+          <div class="wa-channel" data-animate>
             <div>
-              <h3 style="margin:0 0 8px;">Placeholder Kampanya Metni ve Vurucu Başlık</h3>
-              <p style="margin:0;color:#c9d6ff;">Bu alanda açıklamalar düzenlenebilir yapıdadır.</p>
+              <strong>WhatsApp Kanalimiza Katil</strong>
+              <p style="margin:6px 0 0;color:#bde8d6;font-size:14px;">Yeni urun, stok ve indirim duyurulari icin WhatsApp kanalina gecis yap.</p>
             </div>
-            <button class="btn" data-route="category">Kampanyayı İncele</button>
+            <button class="btn wa-btn" id="joinWhatsappChannel">WhatsApp Kanalina Git</button>
           </div>
         </div>
       </section>
+
     </section>
 
     <section class="view" id="view-category">
@@ -2279,105 +2552,4 @@
         state.maxPrice = els.maxPrice.value ? Number(els.maxPrice.value) : null;
         state.tags = new Set([...document.querySelectorAll('.filter-tag:checked')].map(i => i.value));
         state.inStockOnly = els.inStockOnly.checked;
-        renderCategory();
-      }
-
-      ['input', 'change'].forEach(evt => {
-        els.minPrice.addEventListener(evt, syncFilters);
-        els.maxPrice.addEventListener(evt, syncFilters);
-        els.inStockOnly.addEventListener(evt, syncFilters);
-      });
-      document.querySelectorAll('.filter-tag').forEach(chk => chk.addEventListener('change', syncFilters));
-
-      els.clearFiltersBtn.addEventListener('click', () => {
-        els.minPrice.value = '';
-        els.maxPrice.value = '';
-        els.inStockOnly.checked = false;
-        document.querySelectorAll('.filter-tag').forEach(i => i.checked = false);
-        state.quickChip = 'all';
-        state.selectedCategory = 'all';
-        document.querySelectorAll('[data-category-nav]').forEach(link => link.classList.remove('is-current'));
-        document.querySelectorAll('.cat-pill').forEach(link => link.classList.remove('is-current'));
-        document.querySelectorAll('[data-chip]').forEach(c => c.classList.toggle('active', c.dataset.chip === 'all'));
-        syncFilters();
-      });
-
-      els.cartOpen.addEventListener('click', openCart);
-      els.cartClose.addEventListener('click', closeAllPanels);
-      els.overlay.addEventListener('click', closeAllPanels);
-      els.clearCart.addEventListener('click', () => { state.cart = []; renderCart(); });
-      els.favoritesOpen?.addEventListener('click', () => {
-        els.overlay.classList.add('show');
-        els.favoritesDrawer.classList.add('show');
-        els.favoritesDrawer.setAttribute('aria-hidden', 'false');
-      });
-      els.favoritesClose?.addEventListener('click', closeAllPanels);
-      els.favoritesClear?.addEventListener('click', () => {
-        state.favorites = [];
-        renderFeatured();
-        renderCategory();
-        renderDealCarousel();
-        renderFavorites();
-      });
-      els.orderWhatsapp.addEventListener('click', () => {
-        if (!state.cart.length) return;
-        window.open(whatsappUrlForCart(), '_blank', 'noopener,noreferrer');
-      });
-      els.joinWhatsappChannel?.addEventListener('click', () => {
-        window.open(whatsappChannelUrl, '_blank', 'noopener,noreferrer');
-      });
-      els.dealWhatsappBtn?.addEventListener('click', () => {
-        window.open(whatsappChannelUrl, '_blank', 'noopener,noreferrer');
-      });
-      els.dealPrev?.addEventListener('click', () => moveDeal(-1));
-      els.dealNext?.addEventListener('click', () => moveDeal(1));
-      els.proofPrev?.addEventListener('click', () => moveProof(-1));
-      els.proofNext?.addEventListener('click', () => moveProof(1));
-      window.addEventListener('resize', syncProofCarousel);
-
-      els.mobileMenuOpen.addEventListener('click', () => {
-        els.overlay.classList.add('show');
-        els.mobileMenu.classList.add('show');
-      });
-      els.mobileFilterOpen?.addEventListener('click', () => {
-        els.overlay.classList.add('show');
-        els.mobileFilters.classList.add('show');
-      });
-      els.mobileFilterClose.addEventListener('click', closeAllPanels);
-      els.modalClose.addEventListener('click', closeAllPanels);
-      els.modalAddCart.addEventListener('click', () => {
-        if (state.selectedProductId) addToCart(state.selectedProductId);
-      });
-      els.modalOrderNow.addEventListener('click', () => {
-        if (!state.selectedProductId) return;
-        window.open(whatsappUrlForSingleProduct(state.selectedProductId), '_blank', 'noopener,noreferrer');
-      });
-    }
-
-    function mountScrollAnimations() {
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('in');
-        });
-      }, { threshold: .14 });
-      document.querySelectorAll('[data-animate]').forEach(el => io.observe(el));
-    }
-
-    function initFromHash() {
-      const map = { '#home': 'home', '#category': 'category' };
-      const route = map[location.hash] || 'home';
-      setRoute(route);
-    }
-
-    renderFeatured();
-    renderDealCarousel();
-    renderFavorites();
-    renderProofCarousel();
-    renderCategory();
-    renderCart();
-    attachEvents();
-    mountScrollAnimations();
-    initFromHash();
-  </script>
-</body>
-</html>
+        renderCa
