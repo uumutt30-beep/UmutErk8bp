@@ -249,17 +249,23 @@
   <script>
     const whatsappNumber = '905459555848';
     
-    // Coin urunleri
+    // Tüm urunler (Coin + Cash)
     const products = [
-      { id: 1, title: '1 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 399.90, oldPrice: 499.90, tags: ['coin'], img: '1 Milyar Coin.png', amount: '1 Milyar' },
-      { id: 2, title: '2 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 699.90, oldPrice: 874.90, tags: ['coin'], img: '2 Milyar Coin.png', amount: '2 Milyar' },
-      { id: 3, title: '3 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 999.90, oldPrice: 1249.90, tags: ['coin'], img: '3 Milyar Coin.png', amount: '3 Milyar' },
-      { id: 4, title: '5 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 1599.90, oldPrice: 1999.90, tags: ['coin'], img: '5 Milyar Coin.png', amount: '5 Milyar' },
-      { id: 5, title: '10 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 3099.90, oldPrice: 3874.90, tags: ['coin'], img: '10 Milyar Coin.png', amount: '10 Milyar' },
-      { id: 6, title: '15 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 4499.90, oldPrice: 5624.90, tags: ['coin'], img: '15 Milyar Coin.png', amount: '15 Milyar' },
-      { id: 7, title: '20 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 5999.90, oldPrice: 7499.90, tags: ['coin'], img: '20 Milyar Coin.png', amount: '20 Milyar' },
-      { id: 8, title: '25 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 7499.90, oldPrice: 9374.90, tags: ['coin'], img: '25 Milyar Coin.png', amount: '25 Milyar' },
-      { id: 9, title: '50 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 14599.90, oldPrice: 18249.90, tags: ['coin'], img: '50 Milyar Coin.png', amount: '50 Milyar' }
+      // Coin urunleri
+      { id: 1, title: '1 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 399.90, oldPrice: 499.90, tags: ['coin'], img: '1 Milyar Coin.png', amount: '1 Milyar', type: 'coin' },
+      { id: 2, title: '2 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 699.90, oldPrice: 874.90, tags: ['coin'], img: '2 Milyar Coin.png', amount: '2 Milyar', type: 'coin' },
+      { id: 3, title: '3 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 999.90, oldPrice: 1249.90, tags: ['coin'], img: '3 Milyar Coin.png', amount: '3 Milyar', type: 'coin' },
+      { id: 4, title: '5 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 1599.90, oldPrice: 1999.90, tags: ['coin'], img: '5 Milyar Coin.png', amount: '5 Milyar', type: 'coin' },
+      { id: 5, title: '10 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 3099.90, oldPrice: 3874.90, tags: ['coin'], img: '10 Milyar Coin.png', amount: '10 Milyar', type: 'coin' },
+      { id: 6, title: '15 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 4499.90, oldPrice: 5624.90, tags: ['coin'], img: '15 Milyar Coin.png', amount: '15 Milyar', type: 'coin' },
+      { id: 7, title: '20 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 5999.90, oldPrice: 7499.90, tags: ['coin'], img: '20 Milyar Coin.png', amount: '20 Milyar', type: 'coin' },
+      { id: 8, title: '25 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 7499.90, oldPrice: 9374.90, tags: ['coin'], img: '25 Milyar Coin.png', amount: '25 Milyar', type: 'coin' },
+      { id: 9, title: '50 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 14599.90, oldPrice: 18249.90, tags: ['coin'], img: '50 Milyar Coin.png', amount: '50 Milyar', type: 'coin' },
+      // Cash urunleri
+      { id: 10, title: '9.000 Cash Paketi', subtitle: 'Hizli teslim • Cash', price: 999.90, oldPrice: 1249.90, tags: ['cash'], img: '9.000 Cash Paketi.png', amount: '9.000', type: 'cash' },
+      { id: 11, title: '18.000 Cash Paketi', subtitle: 'Hizli teslim • Cash', price: 1899.90, oldPrice: 2374.90, tags: ['cash'], img: '18.000 Cash Paketi.png', amount: '18.000', type: 'cash' },
+      { id: 12, title: '27.000 Cash Paketi', subtitle: 'Hizli teslim • Cash', price: 2799.90, oldPrice: 3499.90, tags: ['cash'], img: '27.000 Cash Paketi.png', amount: '27.000', type: 'cash' },
+      { id: 13, title: '36.000 Cash Paketi', subtitle: 'Hizli teslim • Cash', price: 3799.90, oldPrice: 4749.90, tags: ['cash'], img: '36.000 Cash Paketi.png', amount: '36.000', type: 'cash' }
     ];
     
     const currency = (v) => '₺' + Number(v).toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -290,8 +296,9 @@
       bcTitle.textContent = product.title;
       document.title = product.title + ' | UMUTERK';
       
-      // Dinamik aciklama
-      pDesc.innerHTML = `Kendi Hesabiniza Web ve Mobilede Gecerli Omur Boyu Bansiz <strong>${product.amount}</strong> Coin Aktarilir.`;
+      // Dinamik aciklama - Coin veya Cash
+      const unit = product.type === 'cash' ? 'Cash' : 'Coin';
+      pDesc.innerHTML = `Kendi Hesabiniza Web ve Mobilede Gecerli Omur Boyu Bansiz <strong>${product.amount} ${unit}</strong> Aktarilir.`;
     }
 
     function waText() {
@@ -305,7 +312,8 @@
     }
 
     function renderRelated() {
-      const list = products.filter(p => p.id !== product.id).slice(0, 8);
+      // Ayni tipteki diger urunleri goster (coin ise coin, cash ise cash)
+      const list = products.filter(p => p.id !== product.id && p.type === product.type).slice(0, 8);
       document.getElementById('relatedCards').innerHTML = list.map(p => `
         <article class="card" data-id="${p.id}">
           <div class="thumb"><img src="${p.img}" alt="${p.title}"></div>
