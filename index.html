@@ -1179,58 +1179,33 @@
     .price-row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-top: 6px;
+      gap: 12px;
+      margin-top: 8px;
       flex-wrap: wrap;
     }
     .price {
-      font-size: 22px;
-      font-weight: 900;
+      font-size: 24px;
+      font-weight: 800;
       color: #ffffff;
-      text-shadow: 
-        0 0 10px rgba(0, 194, 255, .5),
-        0 0 20px rgba(0, 194, 255, .3),
-        0 0 30px rgba(0, 194, 255, .2);
-      letter-spacing: -0.5px;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      animation: priceGlow 2s ease-in-out infinite alternate;
-    }
-    @keyframes priceGlow {
-      from {
-        text-shadow: 
-          0 0 10px rgba(0, 194, 255, .4),
-          0 0 20px rgba(0, 194, 255, .2);
-      }
-      to {
-        text-shadow: 
-          0 0 15px rgba(0, 194, 255, .7),
-          0 0 30px rgba(0, 194, 255, .4),
-          0 0 45px rgba(0, 194, 255, .2);
-      }
+      letter-spacing: -0.3px;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
     .price-old {
-      font-size: 14px;
-      color: #9db0eb;
+      font-size: 15px;
+      color: #8b9dc3;
       text-decoration: line-through;
-      opacity: 0.85;
       font-weight: 500;
     }
     .discount-badge {
       display: inline-flex;
       align-items: center;
-      padding: 4px 10px;
-      background: linear-gradient(135deg, #ff4757 0%, #ff6348 100%);
+      padding: 5px 10px;
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
       color: #fff;
-      font-size: 11px;
-      font-weight: 800;
-      border-radius: 20px;
-      text-shadow: 0 1px 2px rgba(0,0,0,.2);
-      box-shadow: 0 4px 15px rgba(255, 71, 87, .4);
-      animation: discountPulse 1.5s ease-in-out infinite;
-    }
-    @keyframes discountPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
     }
     .card-actions {
       margin-top: auto;
@@ -1791,20 +1766,78 @@
       
       /* Fiyatlar mobil */
       .price {
-        font-size: 20px;
+        font-size: 22px;
       }
       
       .price-old {
-        font-size: 13px;
+        font-size: 14px;
       }
       
       /* Ürün başlıkları mobil */
       .product-title {
-        font-size: 15px;
+        font-size: 17px;
+        font-weight: 700;
       }
       
       .product-sub {
-        font-size: 12px;
+        font-size: 14px;
+      }
+      
+      /* Section başlıkları mobil */
+      .section-head h2 {
+        font-size: 24px;
+      }
+      
+      .section-head p {
+        font-size: 15px;
+      }
+      
+      /* Hot chip butonları mobil */
+      .hot-chip {
+        padding: 18px 16px;
+        font-size: 15px;
+        font-weight: 800;
+        min-height: 60px;
+      }
+      
+      /* Kategori yazıları */
+      .cat-pill span {
+        font-size: 17px;
+      }
+      
+      /* Navigasyon */
+      .nav-link {
+        font-size: 16px;
+        padding: 14px 16px;
+      }
+      
+      /* Genel yazılar */
+      body {
+        font-size: 16px;
+      }
+      
+      /* Butonlar */
+      .btn {
+        padding: 14px 20px;
+        font-size: 15px;
+      }
+      
+      /* Feature kartları */
+      .feature b {
+        font-size: 16px;
+      }
+      
+      .feature span {
+        font-size: 14px;
+      }
+      
+      /* Footer */
+      .footer h4 {
+        font-size: 18px;
+      }
+      
+      .footer a, .footer p {
+        font-size: 15px;
       }
       
       /* Mini banner */
@@ -2179,15 +2212,21 @@
     };
 
     const products = [
-      { id: 1, title: '1 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 399.90, oldPrice: 499.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '1 Milyar Coin.png' },
-      { id: 2, title: '2 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 699.90, oldPrice: 874.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '2 Milyar Coin.png' },
-      { id: 3, title: '3 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 999.90, oldPrice: 1249.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '3 Milyar Coin.png' },
-      { id: 4, title: '5 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 1599.90, oldPrice: 1999.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '5 Milyar Coin.png' },
-      { id: 5, title: '10 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 3099.90, oldPrice: 3874.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '10 Milyar Coin.png' },
-      { id: 6, title: '15 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 4499.90, oldPrice: 5624.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '15 Milyar Coin.png' },
-      { id: 7, title: '20 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 5999.90, oldPrice: 7499.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '20 Milyar Coin.png' },
-      { id: 8, title: '25 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 7499.90, oldPrice: 9374.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '25 Milyar Coin.png' },
-      { id: 9, title: '50 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 14599.90, oldPrice: 18249.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '50 Milyar Coin.png' }
+      // Coin ürünleri
+      { id: 1, title: '1 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 399.90, oldPrice: 499.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '1 Milyar Coin.png', amount: '1 Milyar', type: 'coin' },
+      { id: 2, title: '2 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 699.90, oldPrice: 874.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '2 Milyar Coin.png', amount: '2 Milyar', type: 'coin' },
+      { id: 3, title: '3 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 999.90, oldPrice: 1249.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '3 Milyar Coin.png', amount: '3 Milyar', type: 'coin' },
+      { id: 4, title: '5 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 1599.90, oldPrice: 1999.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '5 Milyar Coin.png', amount: '5 Milyar', type: 'coin' },
+      { id: 5, title: '10 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 3099.90, oldPrice: 3874.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '10 Milyar Coin.png', amount: '10 Milyar', type: 'coin' },
+      { id: 6, title: '15 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 4499.90, oldPrice: 5624.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '15 Milyar Coin.png', amount: '15 Milyar', type: 'coin' },
+      { id: 7, title: '20 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 5999.90, oldPrice: 7499.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '20 Milyar Coin.png', amount: '20 Milyar', type: 'coin' },
+      { id: 8, title: '25 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 7499.90, oldPrice: 9374.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '25 Milyar Coin.png', amount: '25 Milyar', type: 'coin' },
+      { id: 9, title: '50 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 14599.90, oldPrice: 18249.90, tags: ['coin', 'sale', 'popular'], stock: true, img: '50 Milyar Coin.png', amount: '50 Milyar', type: 'coin' },
+      // Cash ürünleri
+      { id: 10, title: '9.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 999.90, oldPrice: 1249.90, tags: ['cash', 'sale', 'popular'], stock: true, img: '9.000 Cash Paketi.png', amount: '9.000', type: 'cash' },
+      { id: 11, title: '18.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 1899.90, oldPrice: 2374.90, tags: ['cash', 'sale', 'popular'], stock: true, img: '18.000 Cash Paketi.png', amount: '18.000', type: 'cash' },
+      { id: 12, title: '27.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 2799.90, oldPrice: 3499.90, tags: ['cash', 'sale', 'popular'], stock: true, img: '27.000 Cash Paketi.png', amount: '27.000', type: 'cash' },
+      { id: 13, title: '36.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 3799.90, oldPrice: 4749.90, tags: ['cash', 'sale', 'popular'], stock: true, img: '36.000 Cash Paketi.png', amount: '36.000', type: 'cash' }
     ];
 
     const els = {
