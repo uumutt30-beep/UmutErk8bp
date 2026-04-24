@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Urun Detayi</title>
+  <title>Urun Detayi | UMUTERK</title>
   <style>
     :root {
       --bg: #0b1020;
@@ -32,84 +32,152 @@
     .container { width: min(1320px, calc(100% - 32px)); margin-inline: auto; }
     .top { border-bottom: 1px solid #25386f; background: rgba(11, 17, 41, .86); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 20; }
     .top .container { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-    .brand { font-weight: 900; letter-spacing: .3px; }
+    .brand { font-weight: 900; letter-spacing: .3px; font-size: 20px; }
     .btn {
       border: 1px solid transparent;
       background: linear-gradient(90deg, var(--brand), var(--brand-2));
       color: #031433;
       font-weight: 800;
-      padding: 10px 14px;
+      padding: 12px 20px;
       border-radius: 10px;
       cursor: pointer;
+      font-size: 15px;
+      transition: all .2s;
     }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
     .btn-ghost { background: transparent; border-color: var(--line); color: var(--text); }
     .breadcrumb { padding: 14px 0 8px; color: #aebce9; font-size: 13px; }
     .product-layout {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
-      gap: 16px;
+      gap: 24px;
       align-items: start;
-      padding-bottom: 18px;
+      padding-bottom: 30px;
     }
     .media-box {
       border: 1px solid var(--line);
-      border-radius: 16px;
+      border-radius: 20px;
       overflow: hidden;
       background: #0f1838;
       aspect-ratio: var(--ratio);
       position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, .4);
     }
     .media-box img { width: 100%; height: 100%; object-fit: cover; }
     .panel {
       border: 1px solid var(--line);
-      border-radius: 16px;
+      border-radius: 20px;
       background: linear-gradient(180deg, var(--panel-2), var(--panel));
-      padding: 14px;
+      padding: 24px;
       box-shadow: var(--shadow);
     }
-    .rating { color: #ffd979; font-size: 13px; margin-bottom: 8px; }
-    .stock { color: var(--ok); font-size: 13px; font-weight: 700; }
-    .price-row { display: flex; align-items: end; gap: 10px; margin: 8px 0 10px; }
-    .price { font-size: 30px; font-weight: 900; }
-    .old { text-decoration: line-through; color: #9bb0ec; font-size: 14px; }
+    .rating { color: #ffd979; font-size: 14px; margin-bottom: 10px; letter-spacing: 1px; }
+    .stock { 
+      color: #ff6b6b; 
+      font-size: 14px; 
+      font-weight: 800; 
+      background: rgba(255, 107, 107, .15);
+      padding: 6px 12px;
+      border-radius: 8px;
+      display: inline-block;
+      border: 1px solid rgba(255, 107, 107, .3);
+      animation: pulseStock 2s infinite;
+    }
+    @keyframes pulseStock {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .7; }
+    }
+    .price-row { display: flex; align-items: center; gap: 14px; margin: 16px 0 14px; flex-wrap: wrap; }
+    .price { 
+      font-size: 36px; 
+      font-weight: 900; 
+      color: #fff;
+      text-shadow: 0 0 20px rgba(0, 194, 255, .5), 0 0 40px rgba(0, 194, 255, .3);
+      animation: priceGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes priceGlow {
+      from { text-shadow: 0 0 15px rgba(0, 194, 255, .4); }
+      to { text-shadow: 0 0 25px rgba(0, 194, 255, .7), 0 0 50px rgba(0, 194, 255, .4); }
+    }
+    .old { 
+      text-decoration: line-through; 
+      color: #9bb0ec; 
+      font-size: 18px;
+      font-weight: 500;
+    }
     .discount {
       display: inline-flex;
       align-items: center;
       border: 1px solid #ff99b6;
       color: #ffdce7;
-      background: linear-gradient(90deg, rgba(255, 74, 122, .3), rgba(255, 112, 76, .24));
-      border-radius: 999px;
-      padding: 5px 10px;
-      font-size: 12px;
+      background: linear-gradient(90deg, rgba(255, 74, 122, .4), rgba(255, 112, 76, .3));
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
       font-weight: 800;
+      box-shadow: 0 4px 15px rgba(255, 71, 87, .3);
+      animation: discountPulse 1.5s ease-in-out infinite;
     }
-    .qty { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-    .qty button { width: 34px; height: 34px; border: 0; background: #18285e; color: #fff; cursor: pointer; }
-    .qty span { width: 34px; text-align: center; }
-    .actions { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .accordion { margin-top: 14px; display: grid; gap: 8px; }
-    .acc-item { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #0f1838; }
-    .acc-btn { width: 100%; text-align: left; border: 0; background: #111d43; color: #e8eeff; padding: 12px; cursor: pointer; font-weight: 700; }
-    .acc-body { padding: 12px; color: var(--muted); font-size: 14px; display: none; }
+    @keyframes discountPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .qty { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #0d1633; }
+    .qty button { width: 40px; height: 40px; border: 0; background: #1a2a5e; color: #fff; cursor: pointer; font-size: 18px; transition: all .2s; }
+    .qty button:hover { background: #243878; }
+    .qty span { width: 50px; text-align: center; font-size: 18px; font-weight: 700; }
+    .actions { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .actions .btn { padding: 16px 24px; font-size: 16px; }
+    .accordion { margin-top: 20px; display: grid; gap: 10px; }
+    .acc-item { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #0f1838; }
+    .acc-btn { width: 100%; text-align: left; border: 0; background: #151d3d; color: #e8eeff; padding: 16px; cursor: pointer; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: space-between; }
+    .acc-btn::after { content: '▼'; font-size: 12px; transition: transform .3s; }
+    .acc-item.open .acc-btn::after { transform: rotate(180deg); }
+    .acc-body { padding: 16px; color: var(--muted); font-size: 15px; line-height: 1.7; display: none; }
     .acc-item.open .acc-body { display: block; }
-    .related { padding: 12px 0 30px; }
-    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-    .card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #101a3d; cursor: pointer; }
-    .thumb { aspect-ratio: var(--ratio); background: #0e1633; }
-    .thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .body { padding: 10px; display: grid; gap: 6px; }
-    .title { font-size: 14px; min-height: 34px; margin: 0; }
-    .sub { font-size: 12px; color: var(--muted); }
-    .row { display: flex; align-items: baseline; gap: 8px; }
-    .p { font-weight: 900; }
-    .o { text-decoration: line-through; color: #9bb0ec; font-size: 12px; }
+    .acc-body strong { color: #fff; }
+    .related { padding: 30px 0 40px; }
+    .related h2 { 
+      margin: 0 0 20px; 
+      font-size: 26px; 
+      font-weight: 800;
+      text-shadow: 0 0 15px rgba(90, 118, 255, .4);
+    }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .card { 
+      border: 1px solid var(--line); 
+      border-radius: 16px; 
+      overflow: hidden; 
+      background: #101a3d; 
+      cursor: pointer;
+      transition: all .3s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0, 0, 0, .4); border-color: #5a76da; }
+    .thumb { aspect-ratio: var(--ratio); background: #0e1633; overflow: hidden; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+    .card:hover .thumb img { transform: scale(1.05); }
+    .body { padding: 14px; display: grid; gap: 8px; }
+    .title { font-size: 15px; font-weight: 700; min-height: 40px; margin: 0; color: #f0f4ff; }
+    .sub { font-size: 13px; color: #a5b4fc; font-weight: 500; }
+    .row { display: flex; align-items: baseline; gap: 10px; margin-top: 4px; }
+    .p { 
+      font-weight: 900; 
+      font-size: 18px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(0, 194, 255, .3);
+    }
+    .o { text-decoration: line-through; color: #9bb0ec; font-size: 13px; }
     @media (max-width: 980px) {
       .product-layout { grid-template-columns: 1fr; }
       .cards { grid-template-columns: repeat(2, 1fr); }
+      .price { font-size: 28px; }
     }
     @media (max-width: 640px) {
-      .cards { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
       .actions { grid-template-columns: 1fr; }
+      .price { font-size: 24px; }
+      .old { font-size: 15px; }
+      .panel { padding: 18px; }
     }
   </style>
 </head>
@@ -122,24 +190,24 @@
   </header>
 
   <main class="container">
-    <div class="breadcrumb">Ana Sayfa > Katalog > <span id="bcTitle">Urun</span></div>
+    <div class="breadcrumb">Ana Sayfa &gt; Coin Paketleri &gt; <span id="bcTitle">Urun</span></div>
     <section class="product-layout">
       <article class="media-box">
-        <img id="pImg" src="assets/products/p01.png" alt="Urun">
+        <img id="pImg" src="" alt="Urun">
       </article>
       <aside class="panel">
-        <h1 id="pTitle" style="margin:0 0 8px;font-size:30px;">Urun</h1>
-        <div class="rating">★★★★★ 5.0/5.0 (99 yorum)</div>
-        <div class="stock">Stokta: Cok sayida</div>
+        <h1 id="pTitle" style="margin:0 0 10px;font-size:32px;font-weight:800;color:#fff;text-shadow:0 0 20px rgba(90,118,255,.3);">Urun</h1>
+        <div class="rating">★★★★★ 5.0/5.0 (128 yorum)</div>
+        <div class="stock" id="pStock">⚡ Stok: Tukenmek Uzere!</div>
         <div class="price-row">
           <span class="price" id="pPrice">₺0</span>
           <span class="old" id="pOld">₺0</span>
-          <span class="discount" id="pDisc">%0 INDIRIM</span>
+          <span class="discount" id="pDisc">%20 INDIRIM</span>
         </div>
-        <p id="pSub" style="margin:0 0 10px;color:#bfd0ff;">Kategori alt bilgisi</p>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <div class="qty"><button id="qMinus">-</button><span id="qVal">1</span><button id="qPlus">+</button></div>
-          <small style="color:#9eb0e8;">Vergi dahildir</small>
+        <p id="pSub" style="margin:0 0 14px;color:#a5b4fc;font-size:15px;font-weight:500;">Hizli teslim • Coin</p>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="qty"><button id="qMinus">−</button><span id="qVal">1</span><button id="qPlus">+</button></div>
+          <small style="color:#9eb0e8;font-size:13px;">Vergi dahildir</small>
         </div>
         <div class="actions">
           <button class="btn" id="addCart">Sepete Ekle</button>
@@ -148,43 +216,55 @@
         <div class="accordion">
           <div class="acc-item open">
             <button class="acc-btn">Urun Aciklamasi</button>
-            <div class="acc-body">Bu alan referans tasarimdaki aciklama bloklarina benzer sekilde olusturulmustur.</div>
+            <div class="acc-body" id="pDesc">
+              Kendi Hesabiniza Web ve Mobilede Gecerli Omur Boyu Bansiz Coin Aktarimi.
+            </div>
           </div>
           <div class="acc-item">
             <button class="acc-btn">Teslimat Talimatlari</button>
-            <div class="acc-body">Siparis sonrasi WhatsApp uzerinden iletisime gecilerek hizli islem yapilir.</div>
+            <div class="acc-body">
+              Siparisleriniz WhatsApp uzerinden hizli ve guvenli sekilde isleme alinir. 
+              Teslimat bilgilerinizi siparis sonrasi ileteceginiz hesap bilgileri uzerinden gerceklestirilir.
+            </div>
           </div>
           <div class="acc-item">
             <button class="acc-btn">Sure ve Yontem</button>
-            <div class="acc-body">Teslimat suresi urune gore degisir; surece dair bilgilendirme mesajla verilir.</div>
+            <div class="acc-body" id="pDelivery">
+              Coin siparisleriniz, web uzerinden %100 guvenli ve bansiz sekilde aktarilir. 
+              Guvenligi en ust seviyede tutmak adina her musterimiz icin ozel bir bilgisayar ayrildigindan, 
+              islemlerde sira olusabilmektedir.<br><br>
+              Siparis miktariniza bagli olarak teslimatiniz 24 saat icinde gerceklestirilir. 
+              Islem suresi ortalama 3-6 saattir. Islem basladiginda size iletilecek olan canli takip linki 
+              uzerinden tum sureci anlik olarak takip edebilirsiniz.
+            </div>
           </div>
         </div>
       </aside>
     </section>
 
     <section class="related">
-      <h2 style="margin:0 0 10px;">Bunlari da begenebilirsin</h2>
+      <h2>Bunlari da Begenebilirsin</h2>
       <div class="cards" id="relatedCards"></div>
     </section>
   </main>
 
   <script>
     const whatsappNumber = '905459555848';
+    
+    // Coin urunleri
     const products = [
-      { id: 1, title: 'Deneme Urun 01', subtitle: 'Hizli teslim • Coin', price: 137, oldPrice: 199, tags: ['coin'], img: 'assets/products/p01.png' },
-      { id: 2, title: 'Deneme Urun 02', subtitle: 'Ozel firsat • Cash', price: 284, oldPrice: 349, tags: ['cash'], img: 'assets/products/p02.png' },
-      { id: 3, title: 'Deneme Urun 03', subtitle: 'Nadir seri • Skin', price: 419, oldPrice: 479, tags: ['skin'], img: 'assets/products/p03.png' },
-      { id: 4, title: 'Deneme Urun 04', subtitle: 'Ekstra bonus • Coin', price: 96, oldPrice: 139, tags: ['coin'], img: 'assets/products/p04.png' },
-      { id: 5, title: 'Deneme Urun 05', subtitle: 'Sezonluk avantaj • Cash', price: 532, oldPrice: 619, tags: ['cash'], img: 'assets/products/p05.png' },
-      { id: 6, title: 'Deneme Urun 06', subtitle: 'Koleksiyon • Skin', price: 268, oldPrice: 329, tags: ['skin'], img: 'assets/products/p06.png' },
-      { id: 7, title: 'Deneme Urun 07', subtitle: 'Ekonomik seri • Coin', price: 73, oldPrice: 109, tags: ['coin'], img: 'assets/products/p07.png' },
-      { id: 8, title: 'Deneme Urun 08', subtitle: 'VIP paket • Cash', price: 746, oldPrice: 829, tags: ['cash'], img: 'assets/products/p08.png' },
-      { id: 9, title: 'Deneme Urun 09', subtitle: 'Tema surumu • Skin', price: 223, oldPrice: 269, tags: ['skin'], img: 'assets/products/p09.png' },
-      { id: 10, title: 'Deneme Urun 10', subtitle: 'Turnuva destegi • Coin', price: 188, oldPrice: 239, tags: ['coin'], img: 'assets/products/p10.png' },
-      { id: 11, title: 'Deneme Urun 11', subtitle: 'Guclu baslangic • Cash', price: 357, oldPrice: 409, tags: ['cash'], img: 'assets/products/p11.png' },
-      { id: 12, title: 'Deneme Urun 12', subtitle: 'Ozel renk • Skin', price: 297, oldPrice: 359, tags: ['skin'], img: 'assets/products/p12.png' }
+      { id: 1, title: '1 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 399.90, oldPrice: 499.90, tags: ['coin'], img: '1 Milyar Coin.png', amount: '1 Milyar' },
+      { id: 2, title: '2 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 699.90, oldPrice: 874.90, tags: ['coin'], img: '2 Milyar Coin.png', amount: '2 Milyar' },
+      { id: 3, title: '3 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 999.90, oldPrice: 1249.90, tags: ['coin'], img: '3 Milyar Coin.png', amount: '3 Milyar' },
+      { id: 4, title: '5 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 1599.90, oldPrice: 1999.90, tags: ['coin'], img: '5 Milyar Coin.png', amount: '5 Milyar' },
+      { id: 5, title: '10 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 3099.90, oldPrice: 3874.90, tags: ['coin'], img: '10 Milyar Coin.png', amount: '10 Milyar' },
+      { id: 6, title: '15 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 4499.90, oldPrice: 5624.90, tags: ['coin'], img: '15 Milyar Coin.png', amount: '15 Milyar' },
+      { id: 7, title: '20 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 5999.90, oldPrice: 7499.90, tags: ['coin'], img: '20 Milyar Coin.png', amount: '20 Milyar' },
+      { id: 8, title: '25 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 7499.90, oldPrice: 9374.90, tags: ['coin'], img: '25 Milyar Coin.png', amount: '25 Milyar' },
+      { id: 9, title: '50 Milyar Coin', subtitle: 'Hizli teslim • Coin', price: 14599.90, oldPrice: 18249.90, tags: ['coin'], img: '50 Milyar Coin.png', amount: '50 Milyar' }
     ];
-    const currency = (v) => '₺' + Number(v).toLocaleString('tr-TR');
+    
+    const currency = (v) => '₺' + Number(v).toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     const query = new URLSearchParams(location.search);
     const id = Number(query.get('id')) || 1;
     const product = products.find(p => p.id === id) || products[0];
@@ -198,6 +278,7 @@
     const pDisc = document.getElementById('pDisc');
     const bcTitle = document.getElementById('bcTitle');
     const qVal = document.getElementById('qVal');
+    const pDesc = document.getElementById('pDesc');
 
     function paintProduct() {
       const discount = Math.round((1 - product.price / product.oldPrice) * 100);
@@ -210,6 +291,9 @@
       pDisc.textContent = `%${discount} INDIRIM`;
       bcTitle.textContent = product.title;
       document.title = product.title + ' | UMUTERK';
+      
+      // Dinamik aciklama
+      pDesc.innerHTML = `Kendi Hesabiniza Web ve Mobilede Gecerli Omur Boyu Bansiz <strong>${product.amount}</strong> Coin Aktarilir.`;
     }
 
     function waText() {
