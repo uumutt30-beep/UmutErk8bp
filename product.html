@@ -90,37 +90,26 @@
     .price-row { display: flex; align-items: center; gap: 14px; margin: 16px 0 14px; flex-wrap: wrap; }
     .price { 
       font-size: 36px; 
-      font-weight: 900; 
+      font-weight: 800; 
       color: #fff;
-      text-shadow: 0 0 20px rgba(0, 194, 255, .5), 0 0 40px rgba(0, 194, 255, .3);
-      animation: priceGlow 2s ease-in-out infinite alternate;
-    }
-    @keyframes priceGlow {
-      from { text-shadow: 0 0 15px rgba(0, 194, 255, .4); }
-      to { text-shadow: 0 0 25px rgba(0, 194, 255, .7), 0 0 50px rgba(0, 194, 255, .4); }
+      letter-spacing: -0.5px;
     }
     .old { 
       text-decoration: line-through; 
-      color: #9bb0ec; 
+      color: #8b9dc3; 
       font-size: 18px;
       font-weight: 500;
     }
     .discount {
       display: inline-flex;
       align-items: center;
-      border: 1px solid #ff99b6;
-      color: #ffdce7;
-      background: linear-gradient(90deg, rgba(255, 74, 122, .4), rgba(255, 112, 76, .3));
-      border-radius: 20px;
-      padding: 6px 14px;
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+      color: #fff;
+      border-radius: 8px;
+      padding: 6px 12px;
       font-size: 13px;
-      font-weight: 800;
-      box-shadow: 0 4px 15px rgba(255, 71, 87, .3);
-      animation: discountPulse 1.5s ease-in-out infinite;
-    }
-    @keyframes discountPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+      font-weight: 700;
+      letter-spacing: 0.5px;
     }
     .qty { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #0d1633; }
     .qty button { width: 40px; height: 40px; border: 0; background: #1a2a5e; color: #fff; cursor: pointer; font-size: 18px; transition: all .2s; }
@@ -175,9 +164,18 @@
     @media (max-width: 640px) {
       .cards { grid-template-columns: repeat(2, 1fr); }
       .actions { grid-template-columns: 1fr; }
-      .price { font-size: 24px; }
-      .old { font-size: 15px; }
-      .panel { padding: 18px; }
+      .price { font-size: 28px; }
+      .old { font-size: 16px; }
+      .panel { padding: 20px; }
+      .breadcrumb { font-size: 15px; }
+      h1 { font-size: 26px !important; }
+      .rating { font-size: 15px; }
+      .stock { font-size: 15px; }
+      .acc-btn { font-size: 16px; }
+      .acc-body { font-size: 15px; }
+      .related h2 { font-size: 22px; }
+      .title { font-size: 16px; }
+      .p { font-size: 17px; }
     }
   </style>
 </head>
