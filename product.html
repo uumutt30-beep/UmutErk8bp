@@ -115,6 +115,141 @@
     .qty button { width: 40px; height: 40px; border: 0; background: #1a2a5e; color: #fff; cursor: pointer; font-size: 18px; transition: all .2s; }
     .qty button:hover { background: #243878; }
     .qty span { width: 50px; text-align: center; font-size: 18px; font-weight: 700; }
+    
+    /* VIP Katman Seçim Paneli */
+    .vip-panel {
+      margin: 16px 0;
+      border: 1px solid rgba(90, 118, 255, 0.4);
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(16, 26, 61, 0.8) 0%, rgba(12, 20, 47, 0.9) 100%);
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+    .vip-panel::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #c0c0c0 25%, #ffd700 50%, #50c878 75%, #00c2ff 100%);
+    }
+    .vip-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 14px;
+      text-shadow: 0 0 15px rgba(0, 194, 255, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .vip-tiers {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .vip-tier {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      background: rgba(255, 255, 255, 0.03);
+      cursor: pointer;
+      transition: all .25s;
+      position: relative;
+    }
+    .vip-tier:hover {
+      background: rgba(255, 255, 255, 0.06);
+      transform: translateX(4px);
+    }
+    .vip-tier.selected {
+      border-color: currentColor;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .vip-tier.gumus { color: #c0c0c0; }
+    .vip-tier.altin { color: #ffd700; }
+    .vip-tier.zumrut { color: #50c878; }
+    .vip-tier.elmas { color: #00c2ff; }
+    .vip-tier.karaelmas { color: #8a2be2; }
+    
+    .vip-tier-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .vip-tier.selected .vip-tier-badge {
+      animation: tierPulse 1.5s ease-in-out infinite;
+    }
+    @keyframes tierPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 currentColor; }
+      50% { transform: scale(1.1); box-shadow: 0 0 0 8px transparent; }
+    }
+    .vip-tier-info {
+      flex: 1;
+    }
+    .vip-tier-name {
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+    .vip-tier-multiplier {
+      font-size: 12px;
+      opacity: 0.75;
+      font-weight: 600;
+    }
+    .vip-cash-display {
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.3);
+      min-width: 70px;
+      text-align: center;
+    }
+    
+    .cash-preview {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, rgba(255, 198, 90, 0.15) 0%, rgba(255, 92, 141, 0.1) 100%);
+      border: 1px solid rgba(255, 198, 90, 0.3);
+      text-align: center;
+    }
+    .cash-preview-label {
+      font-size: 12px;
+      color: #ffc65a;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .cash-preview-amount {
+      font-size: 24px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    .vip-bonus-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #ff5c8d, #ffc65a);
+      color: #000;
+    }
+    
     .actions { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .actions .btn { padding: 16px 24px; font-size: 16px; }
     .accordion { margin-top: 20px; display: grid; gap: 10px; }
@@ -202,7 +337,60 @@
           <span class="old" id="pOld">₺0</span>
           <span class="discount" id="pDisc">%20 INDIRIM</span>
         </div>
-        <p id="pSub" style="margin:0 0 14px;color:#a5b4fc;font-size:15px;font-weight:500;">Hızlı teslim • Coin</p>
+        <p id="pSub" style="margin:0 0 14px;color:#a5b4fc;font-size:15px;font-weight:500;">Hızlı teslim • Cash</p>
+        
+        <!-- VIP Katman Seçim Paneli (Sadece Cash Ürünleri İçin) -->
+        <div id="vipPanel" class="vip-panel" style="display: none;">
+          <div class="vip-title">💎 VIP KATMANINIZI SEÇİN</div>
+          <div class="vip-tiers" id="vipTiers">
+            <div class="vip-tier gumus" data-tier="gumus" data-multiplier="1.1">
+              <div class="vip-tier-badge">🥈</div>
+              <div class="vip-tier-info">
+                <div class="vip-tier-name">GÜMÜŞ</div>
+                <div class="vip-tier-multiplier">x1.1 Çarpan</div>
+              </div>
+              <div class="vip-cash-display" id="cashGumus">-</div>
+            </div>
+            <div class="vip-tier altin" data-tier="altin" data-multiplier="1.25">
+              <div class="vip-tier-badge">🥇</div>
+              <div class="vip-tier-info">
+                <div class="vip-tier-name">ALTIN</div>
+                <div class="vip-tier-multiplier">x1.25 Çarpan</div>
+              </div>
+              <div class="vip-cash-display" id="cashAltin">-</div>
+            </div>
+            <div class="vip-tier zumrut selected" data-tier="zumrut" data-multiplier="1.5">
+              <div class="vip-tier-badge">💚</div>
+              <div class="vip-tier-info">
+                <div class="vip-tier-name">ZÜMRÜT</div>
+                <div class="vip-tier-multiplier">x1.5 Çarpan</div>
+              </div>
+              <div class="vip-cash-display" id="cashZumrut">-</div>
+            </div>
+            <div class="vip-tier elmas" data-tier="elmas" data-multiplier="1.75">
+              <div class="vip-tier-badge">💎</div>
+              <div class="vip-tier-info">
+                <div class="vip-tier-name">ELMAS</div>
+                <div class="vip-tier-multiplier">x1.75 Çarpan</div>
+              </div>
+              <div class="vip-cash-display" id="cashElmas">-</div>
+            </div>
+            <div class="vip-tier karaelmas" data-tier="karaelmas" data-multiplier="2.0">
+              <div class="vip-tier-badge">🖤</div>
+              <div class="vip-tier-info">
+                <div class="vip-tier-name">KARA ELMAS</div>
+                <div class="vip-tier-multiplier">x2.0 Çarpan</div>
+              </div>
+              <div class="vip-cash-display" id="cashKaraelmas">-</div>
+            </div>
+          </div>
+          <div class="cash-preview">
+            <div class="cash-preview-label">SEÇİLEN KATMANDA ALACAĞINIZ CASH</div>
+            <div class="cash-preview-amount" id="cashPreviewAmount">9.000 Cash</div>
+            <div class="vip-bonus-tag" id="vipBonusTag">+3.000 Bonus 💎</div>
+          </div>
+        </div>
+        
         <div style="display:flex;align-items:center;gap:12px;">
           <div class="qty"><button id="qMinus">−</button><span id="qVal">1</span><button id="qPlus">+</button></div>
           <small style="color:#9eb0e8;font-size:13px;">Vergi dahildir</small>
@@ -342,9 +530,25 @@
     }
 
     function waText() {
+      const selectedTier = document.querySelector('.vip-tier.selected');
+      const multiplier = selectedTier ? parseFloat(selectedTier.dataset.multiplier) : 1.5;
+      const baseAmount = parseInt(product.amount.replace(/[.,]/g, ''));
+      const finalAmount = Math.round(baseAmount * multiplier);
+      
+      const tierNames = {
+        'gumus': 'Gümüş (x1.1)',
+        'altin': 'Altın (x1.25)',
+        'zumrut': 'Zümrüt (x1.5)',
+        'elmas': 'Elmas (x1.75)',
+        'karaelmas': 'Kara Elmas (x2.0)'
+      };
+      const selectedTierName = selectedTier ? tierNames[selectedTier.dataset.tier] : 'Zümrüt (x1.5)';
+      
       const msg = [
         'Merhaba, bu ürünü satın almak istiyorum:',
         product.title,
+        'VIP Katmanı: ' + selectedTierName,
+        'Alınacak Cash: ' + finalAmount.toLocaleString('tr-TR') + ' Cash',
         'Adet: ' + qty,
         'Fiyat: ' + currency(product.price)
       ].join('\n');
@@ -365,9 +569,71 @@
         </article>
       `).join('');
     }
+    
+    // VIP Katmanı Sistemi (Sadece Cash Ürünleri için)
+    function initVipSystem() {
+      if (product.type !== 'cash') return;
+      
+      const vipPanel = document.getElementById('vipPanel');
+      vipPanel.style.display = 'block';
+      
+      // Base Cash miktarını al (örn: "9.000" → 9000)
+      const baseAmountElement = document.getElementById('cashZumrut');
+      const baseAmountLabel = product.amount; // "9.000"
+      const baseAmountNum = parseInt(baseAmountLabel.replace(/[.,]/g, '')); // 9000
+      
+      // Her katman için Cash miktarını hesapla ve göster
+      const tiers = [
+        { id: 'gumus', multiplier: 1.1, element: 'cashGumus' },
+        { id: 'altin', multiplier: 1.25, element: 'cashAltin' },
+        { id: 'zumrut', multiplier: 1.5, element: 'cashZumrut' },
+        { id: 'elmas', multiplier: 1.75, element: 'cashElmas' },
+        { id: 'karaelmas', multiplier: 2.0, element: 'cashKaraelmas' }
+      ];
+      
+      tiers.forEach(tier => {
+        const cashAmount = Math.round(baseAmountNum * tier.multiplier);
+        document.getElementById(tier.element).textContent = cashAmount.toLocaleString('tr-TR');
+      });
+      
+      // VIP Tier seçim olayları
+      document.querySelectorAll('.vip-tier').forEach(tier => {
+        tier.addEventListener('click', () => {
+          // Önceki seçimi kaldır
+          document.querySelectorAll('.vip-tier').forEach(t => t.classList.remove('selected'));
+          // Yeni seçimi işaretle
+          tier.classList.add('selected');
+          // Önizlemeyi güncelle
+          updateCashPreview();
+        });
+      });
+      
+      // İlk yüklemede önizlemeyi göster
+      updateCashPreview();
+    }
+    
+    function updateCashPreview() {
+      const selectedTier = document.querySelector('.vip-tier.selected');
+      if (!selectedTier) return;
+      
+      const multiplier = parseFloat(selectedTier.dataset.multiplier);
+      const baseAmount = parseInt(product.amount.replace(/[.,]/g, ''));
+      const finalAmount = Math.round(baseAmount * multiplier);
+      const bonusAmount = finalAmount - baseAmount;
+      
+      document.getElementById('cashPreviewAmount').textContent = finalAmount.toLocaleString('tr-TR') + ' Cash';
+      
+      if (bonusAmount > 0) {
+        document.getElementById('vipBonusTag').textContent = '+' + bonusAmount.toLocaleString('tr-TR') + ' Bonus 💎';
+        document.getElementById('vipBonusTag').style.display = 'inline-flex';
+      } else {
+        document.getElementById('vipBonusTag').style.display = 'none';
+      }
+    }
 
     paintProduct();
     renderRelated();
+    initVipSystem();
 
     document.getElementById('qPlus').addEventListener('click', () => { qty++; qVal.textContent = qty; });
     document.getElementById('qMinus').addEventListener('click', () => { qty = Math.max(1, qty - 1); qVal.textContent = qty; });
