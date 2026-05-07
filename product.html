@@ -444,11 +444,11 @@
       { id: 7, title: '20 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 5999.90, oldPrice: 7499.90, tags: ['coin'], img: '20 Milyar Coin.png', amount: '20 Milyar', type: 'coin' },
       { id: 8, title: '25 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 7499.90, oldPrice: 9374.90, tags: ['coin'], img: '25 Milyar Coin.png', amount: '25 Milyar', type: 'coin' },
       { id: 9, title: '50 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 14599.90, oldPrice: 18249.90, tags: ['coin'], img: '50 Milyar Coin.png', amount: '50 Milyar', type: 'coin' },
-      // Cash ürünleri
-      { id: 10, title: '9.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 999.90, oldPrice: 1249.90, tags: ['cash'], img: '9.000 Cash Paketi.png', amount: '9.000', type: 'cash' },
-      { id: 11, title: '18.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 1899.90, oldPrice: 2374.90, tags: ['cash'], img: '18.000 Cash Paketi.png', amount: '18.000', type: 'cash' },
-      { id: 12, title: '27.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 2799.90, oldPrice: 3499.90, tags: ['cash'], img: '27.000 Cash Paketi.png', amount: '27.000', type: 'cash' },
-      { id: 13, title: '36.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 3799.90, oldPrice: 4749.90, tags: ['cash'], img: '36.000 Cash Paketi.png', amount: '36.000', type: 'cash' }
+      // Cash ürünleri - baseAmount: VIP hesaplaması için ana miktar (Zümrüt x1.5 değil, direkt baz)
+      { id: 10, title: '9.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 999.90, oldPrice: 1249.90, tags: ['cash'], img: '9.000 Cash Paketi.png', amount: '9.000', type: 'cash', baseAmount: 6000 },
+      { id: 11, title: '18.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 1899.90, oldPrice: 2374.90, tags: ['cash'], img: '18.000 Cash Paketi.png', amount: '18.000', type: 'cash', baseAmount: 12000 },
+      { id: 12, title: '27.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 2799.90, oldPrice: 3499.90, tags: ['cash'], img: '27.000 Cash Paketi.png', amount: '27.000', type: 'cash', baseAmount: 18000 },
+      { id: 13, title: '36.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 3799.90, oldPrice: 4749.90, tags: ['cash'], img: '36.000 Cash Paketi.png', amount: '36.000', type: 'cash', baseAmount: 24000 }
     ];
     
     const currency = (v) => '₺' + Number(v).toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -532,7 +532,7 @@
     function waText() {
       const selectedTier = document.querySelector('.vip-tier.selected');
       const multiplier = selectedTier ? parseFloat(selectedTier.dataset.multiplier) : 1.5;
-      const baseAmount = parseInt(product.amount.replace(/[.,]/g, ''));
+      const baseAmount = product.baseAmount || 6000; // Ana miktar (6000, 12000, 18000, 24000)
       const finalAmount = Math.round(baseAmount * multiplier);
       
       const tierNames = {
@@ -577,10 +577,8 @@
       const vipPanel = document.getElementById('vipPanel');
       vipPanel.style.display = 'block';
       
-      // Base Cash miktarını al (örn: "9.000" → 9000)
-      const baseAmountElement = document.getElementById('cashZumrut');
-      const baseAmountLabel = product.amount; // "9.000"
-      const baseAmountNum = parseInt(baseAmountLabel.replace(/[.,]/g, '')); // 9000
+      // Ana (base) Cash miktarını al
+      const baseAmountNum = product.baseAmount || 6000;
       
       // Her katman için Cash miktarını hesapla ve göster
       const tiers = [
@@ -617,14 +615,17 @@
       if (!selectedTier) return;
       
       const multiplier = parseFloat(selectedTier.dataset.multiplier);
-      const baseAmount = parseInt(product.amount.replace(/[.,]/g, ''));
+      const baseAmount = product.baseAmount || 6000;
       const finalAmount = Math.round(baseAmount * multiplier);
-      const bonusAmount = finalAmount - baseAmount;
+      const bonusAmount = finalAmount - (product.baseAmount || 6000);
       
       document.getElementById('cashPreviewAmount').textContent = finalAmount.toLocaleString('tr-TR') + ' Cash';
       
       if (bonusAmount > 0) {
         document.getElementById('vipBonusTag').textContent = '+' + bonusAmount.toLocaleString('tr-TR') + ' Bonus 💎';
+        document.getElementById('vipBonusTag').style.display = 'inline-flex';
+      } else if (bonusAmount < 0) {
+        document.getElementById('vipBonusTag').textContent = bonusAmount.toLocaleString('tr-TR') + ' 💎';
         document.getElementById('vipBonusTag').style.display = 'inline-flex';
       } else {
         document.getElementById('vipBonusTag').style.display = 'none';
