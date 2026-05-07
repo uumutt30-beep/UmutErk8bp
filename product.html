@@ -179,13 +179,16 @@
     .vip-tier.karaelmas { color: #8a2be2; }
     
     .vip-tier-badge {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 36px;
+      height: 36px;
       display: grid;
       place-items: center;
-      font-size: 16px;
-      background: rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+    .vip-tier-badge img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
     }
     .vip-tier.selected .vip-tier-badge {
       animation: tierPulse 1.5s ease-in-out infinite;
@@ -224,6 +227,31 @@
       background: linear-gradient(90deg, rgba(255, 198, 90, 0.15) 0%, rgba(255, 92, 141, 0.1) 100%);
       border: 1px solid rgba(255, 198, 90, 0.3);
       text-align: center;
+      cursor: pointer;
+      transition: all 0.3s var(--easing);
+      position: relative;
+      overflow: hidden;
+    }
+    .cash-preview::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+    .cash-preview:hover::before {
+      left: 100%;
+    }
+    .cash-preview:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 198, 90, 0.2);
+      border-color: rgba(255, 198, 90, 0.5);
+    }
+    .cash-preview:active {
+      transform: translateY(0);
     }
     .cash-preview-label {
       font-size: 12px;
@@ -248,6 +276,16 @@
       font-weight: 800;
       background: linear-gradient(90deg, #ff5c8d, #ffc65a);
       color: #000;
+    }
+    .cash-preview-whatsapp {
+      font-size: 11px;
+      color: #2fd39a;
+      margin-top: 8px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
     }
     
     .actions { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -344,7 +382,7 @@
           <div class="vip-title">💎 VIP KATMANINIZI SEÇİN</div>
           <div class="vip-tiers" id="vipTiers">
             <div class="vip-tier gumus" data-tier="gumus" data-multiplier="1.1">
-              <div class="vip-tier-badge">🥈</div>
+              <div class="vip-tier-badge"><img src="Gümüş-ikon.png" alt="Gümüş" onerror="this.style.display='none'; this.parentNode.textContent='🥈'"></div>
               <div class="vip-tier-info">
                 <div class="vip-tier-name">GÜMÜŞ</div>
                 <div class="vip-tier-multiplier">x1.1 Çarpan</div>
@@ -352,7 +390,7 @@
               <div class="vip-cash-display" id="cashGumus">-</div>
             </div>
             <div class="vip-tier altin" data-tier="altin" data-multiplier="1.25">
-              <div class="vip-tier-badge">🥇</div>
+              <div class="vip-tier-badge"><img src="Altın-ikon.png" alt="Altın" onerror="this.style.display='none'; this.parentNode.textContent='🥇'"></div>
               <div class="vip-tier-info">
                 <div class="vip-tier-name">ALTIN</div>
                 <div class="vip-tier-multiplier">x1.25 Çarpan</div>
@@ -360,7 +398,7 @@
               <div class="vip-cash-display" id="cashAltin">-</div>
             </div>
             <div class="vip-tier zumrut selected" data-tier="zumrut" data-multiplier="1.5">
-              <div class="vip-tier-badge">💚</div>
+              <div class="vip-tier-badge"><img src="Zümrüt-ikon.png" alt="Zümrüt" onerror="this.style.display='none'; this.parentNode.textContent='💚'"></div>
               <div class="vip-tier-info">
                 <div class="vip-tier-name">ZÜMRÜT</div>
                 <div class="vip-tier-multiplier">x1.5 Çarpan</div>
@@ -368,7 +406,7 @@
               <div class="vip-cash-display" id="cashZumrut">-</div>
             </div>
             <div class="vip-tier elmas" data-tier="elmas" data-multiplier="1.75">
-              <div class="vip-tier-badge">💎</div>
+              <div class="vip-tier-badge"><img src="Elmas-ikon.png" alt="Elmas" onerror="this.style.display='none'; this.parentNode.textContent='💎'"></div>
               <div class="vip-tier-info">
                 <div class="vip-tier-name">ELMAS</div>
                 <div class="vip-tier-multiplier">x1.75 Çarpan</div>
@@ -376,7 +414,7 @@
               <div class="vip-cash-display" id="cashElmas">-</div>
             </div>
             <div class="vip-tier karaelmas" data-tier="karaelmas" data-multiplier="2.0">
-              <div class="vip-tier-badge">🖤</div>
+              <div class="vip-tier-badge"><img src="Kara-Elmas-ikon.png" alt="Kara Elmas" onerror="this.style.display='none'; this.parentNode.textContent='🖤'"></div>
               <div class="vip-tier-info">
                 <div class="vip-tier-name">KARA ELMAS</div>
                 <div class="vip-tier-multiplier">x2.0 Çarpan</div>
@@ -384,10 +422,14 @@
               <div class="vip-cash-display" id="cashKaraelmas">-</div>
             </div>
           </div>
-          <div class="cash-preview">
+          <div class="cash-preview" id="cashPreviewBtn">
             <div class="cash-preview-label">SEÇİLEN KATMANDA ALACAĞINIZ CASH</div>
             <div class="cash-preview-amount" id="cashPreviewAmount">9.000 Cash</div>
             <div class="vip-bonus-tag" id="vipBonusTag">+3.000 Bonus 💎</div>
+            <div class="cash-preview-whatsapp">
+              <span>📱</span>
+              <span>WhatsApp İle Hemen Sipariş Ver</span>
+            </div>
           </div>
         </div>
         
@@ -640,6 +682,12 @@
     document.getElementById('qMinus').addEventListener('click', () => { qty = Math.max(1, qty - 1); qVal.textContent = qty; });
     document.getElementById('buyNow').addEventListener('click', () => window.open(waText(), '_blank', 'noopener,noreferrer'));
     document.getElementById('addCart').addEventListener('click', () => window.open(waText(), '_blank', 'noopener,noreferrer'));
+    
+    // Cash Preview Butonu - WhatsApp ile sipariş
+    const cashPreviewBtn = document.getElementById('cashPreviewBtn');
+    if (cashPreviewBtn) {
+      cashPreviewBtn.addEventListener('click', () => window.open(waText(), '_blank', 'noopener,noreferrer'));
+    }
 
     document.querySelectorAll('.acc-btn').forEach(btn => {
       btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
