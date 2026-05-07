@@ -228,12 +228,7 @@
           <div class="acc-item">
             <button class="acc-btn">Süre ve Yöntem</button>
             <div class="acc-body" id="pDelivery">
-              Coin siparişleriniz, web üzerinden %100 güvenli ve bansız şekilde aktarılır. 
-              Güvenliği en üst seviyede tutmak adına her müşterimiz için özel bir bilgisayar ayrıldığından, 
-              işlemlerde sıra oluşabilmektedir.<br><br>
-              Sipariş miktarınıza bağlı olarak teslimatınız 24 saat içinde gerçekleştirilir. 
-              İşlem süresi ortalama 3-6 saattir. İşlem başladığında size iletilecek olan canlı takip linki 
-              üzerinden tüm süreci anlık olarak takip edebilirsiniz.
+              <!-- Dinamik olarak doldurulacak -->
             </div>
           </div>
         </div>
@@ -283,6 +278,44 @@
     const bcTitle = document.getElementById('bcTitle');
     const qVal = document.getElementById('qVal');
     const pDesc = document.getElementById('pDesc');
+    const pDelivery = document.getElementById('pDelivery');
+
+    function getCashDeliveryText() {
+      return `
+        <div style="background: linear-gradient(135deg, rgba(0,194,255,0.12) 0%, rgba(106,124,255,0.08) 100%); border: 1px solid rgba(90,118,255,0.4); border-radius: 12px; padding: 16px; margin-bottom: 14px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+            <span style="font-size: 24px;">💎</span>
+            <span style="font-weight: 800; color: #00c2ff; font-size: 16px; text-shadow: 0 0 10px rgba(0,194,255,0.4);">VIP KATMAN SİSTEMİ</span>
+          </div>
+          <p style="margin: 0 0 10px; color: #c7d3ff; line-height: 1.6;">
+            Cash miktarı <strong style="color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.2);">VIP seviyenize göre belirlenir</strong>. 
+            Zümrüt ve üzeri VIP sahipleri, belirtilen miktardan <span style="color: #2fd39a; font-weight: 700;">DAHA FAZLA</span> Cash kazanır!
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <span style="background: rgba(0,194,255,0.2); border: 1px solid rgba(0,194,255,0.4); color: #00c2ff; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;">💎 Zümrüt+ Bonus</span>
+            <span style="background: rgba(47,211,154,0.2); border: 1px solid rgba(47,211,154,0.4); color: #2fd39a; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 700;">⚡ Hızlı Teslimat</span>
+          </div>
+        </div>
+        <div style="background: linear-gradient(90deg, rgba(255,198,90,0.15) 0%, rgba(255,92,141,0.1) 100%); border-left: 3px solid #ffc65a; padding: 14px 16px; border-radius: 0 12px 12px 0;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+            <span style="font-size: 20px;">⏱️</span>
+            <span style="font-weight: 700; color: #ffc65a; font-size: 15px;">TESLİMAT SÜRESİ</span>
+          </div>
+          <p style="margin: 0; color: #e8eeff; font-size: 15px; font-weight: 600;">
+            Yaklaşık <span style="color: #ff5c8d; font-size: 18px; font-weight: 800; text-shadow: 0 0 12px rgba(255,92,141,0.4);">15-30 DAKİKA</span> içerisinde teslim edilir!
+          </p>
+        </div>
+      `;
+    }
+
+    function getCoinDeliveryText() {
+      return `Coin siparişleriniz, web üzerinden %100 güvenli ve bansız şekilde aktarılır. 
+              Güvenliği en üst seviyede tutmak adına her müşterimiz için özel bir bilgisayar ayrıldığından, 
+              işlemlerde sıra oluşabilmektedir.<br><br>
+              Sipariş miktarınıza bağlı olarak teslimatınız 24 saat içinde gerçekleştirilir. 
+              İşlem süresi ortalama 3-6 saattir. İşlem başladığında size iletilecek olan canlı takip linki 
+              üzerinden tüm süreci anlık olarak takip edebilirsiniz.`;
+    }
 
     function paintProduct() {
       const discount = Math.round((1 - product.price / product.oldPrice) * 100);
@@ -299,6 +332,13 @@
       // Dinamik açıklama - Coin veya Cash
       const unit = product.type === 'cash' ? 'Cash' : 'Coin';
       pDesc.innerHTML = `Kendi Hesabınıza Web ve Mobilde Geçerli Ömür Boyu Bansız <strong>${product.amount} ${unit}</strong> Aktarılır.`;
+      
+      // Dinamik Teslimat bilgisi - Cash için özel metin
+      if (product.type === 'cash') {
+        pDelivery.innerHTML = getCashDeliveryText();
+      } else {
+        pDelivery.innerHTML = getCoinDeliveryText();
+      }
     }
 
     function waText() {
