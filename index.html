@@ -94,39 +94,102 @@
     }
 
     .topbar {
-      background: linear-gradient(90deg, #081124, #0a1c42);
-      border-bottom: 1px solid #20305f;
-      font-size: 13px;
-      color: #ced8ff;
-    }
-    .topbar .container {
-      min-height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      position: relative;
+      background: linear-gradient(90deg, #0d1a3d 0%, #1a0d2e 50%, #0d1a3d 100%);
+      border-bottom: 2px solid;
+      border-image: linear-gradient(90deg, #ff5c8d, #ffc65a, #00c2ff, #6a7cff, #ff5c8d) 1;
+      font-size: 14px;
+      color: #fff;
       overflow: hidden;
+      position: relative;
     }
-    .topbar .container::after {
+    .topbar::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(110deg, transparent 10%, rgba(255,255,255,.09) 25%, transparent 40%);
-      transform: translateX(-130%);
-      animation: sweep 4.2s linear infinite;
+      background: 
+        radial-gradient(ellipse at 20% 50%, rgba(255,92,141,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(0,194,255,0.15) 0%, transparent 50%);
       pointer-events: none;
     }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #37e7a4;
-      box-shadow: 0 0 0 0 rgba(55, 231, 164, .6);
-      animation: pulse 1.8s ease-out infinite;
-      display: inline-block;
-      margin-right: 8px;
-      vertical-align: middle;
+    .topbar .container {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 60px;
+      animation: marquee 20s linear infinite;
+      padding: 10px 0;
+    }
+    .marquee-content {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 20px rgba(255,255,255,0.3);
+    }
+    .marquee-content .sparkle {
+      color: #ffc65a;
+      font-size: 18px;
+      animation: sparkle 1.5s ease-in-out infinite;
+      text-shadow: 0 0 15px #ffc65a, 0 0 30px #ffc65a;
+    }
+    .marquee-content .fire {
+      color: #ff5c8d;
+      font-size: 18px;
+      animation: fire-pulse 1s ease-in-out infinite;
+      text-shadow: 0 0 15px #ff5c8d, 0 0 30px #ff5c8d;
+    }
+    .marquee-content .gift {
+      color: #2fd39a;
+      font-size: 18px;
+      animation: gift-bounce 2s ease-in-out infinite;
+      text-shadow: 0 0 15px #2fd39a, 0 0 30px #2fd39a;
+    }
+    .marquee-content .highlight {
+      background: linear-gradient(90deg, #ffc65a, #ff5c8d, #ffc65a);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shine 2s linear infinite;
+      font-weight: 800;
+    }
+    .marquee-content .highlight-blue {
+      background: linear-gradient(90deg, #00c2ff, #6a7cff, #00c2ff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shine 2s linear infinite;
+      font-weight: 800;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: scale(1.3) rotate(180deg); opacity: 0.8; }
+    }
+    @keyframes fire-pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    @keyframes gift-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    @keyframes shine {
+      0% { background-position: 0% center; }
+      100% { background-position: 200% center; }
     }
 
     .site-header {
@@ -1888,8 +1951,52 @@
 <body>
   <div class="topbar">
     <div class="container">
-      <span><i class="pulse-dot"></i>Deneme kampanyası: 2 al 1 öde • Ücretsiz dijital teslimat</span>
-      <span>Canlı Destek: 7/24 Placeholder Hizmet</span>
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span class="sparkle">✨</span>
+          <span class="highlight">MAĞAZA AÇILIŞINA ÖZEL</span>
+          <span class="fire">🔥</span>
+          <span>Bütün Ürünler <span class="highlight">İNDİRİMLİDİR</span></span>
+          <span class="gift">🎁</span>
+          <span class="highlight-blue">1000₺ ve Üzeri</span>
+          <span>Alışverişlerinizde</span>
+          <span class="highlight">100₺ INDIRIM!</span>
+          <span class="fire">🔥</span>
+        </div>
+        <div class="marquee-content">
+          <span class="sparkle">✨</span>
+          <span class="highlight">MAĞAZA AÇILIŞINA ÖZEL</span>
+          <span class="fire">🔥</span>
+          <span>Bütün Ürünler <span class="highlight">İNDİRİMLİDİR</span></span>
+          <span class="gift">🎁</span>
+          <span class="highlight-blue">1000₺ ve Üzeri</span>
+          <span>Alışverişlerinizde</span>
+          <span class="highlight">100₺ INDIRIM!</span>
+          <span class="fire">🔥</span>
+        </div>
+        <div class="marquee-content">
+          <span class="sparkle">✨</span>
+          <span class="highlight">MAĞAZA AÇILIŞINA ÖZEL</span>
+          <span class="fire">🔥</span>
+          <span>Bütün Ürünler <span class="highlight">İNDİRİMLİDİR</span></span>
+          <span class="gift">🎁</span>
+          <span class="highlight-blue">1000₺ ve Üzeri</span>
+          <span>Alışverişlerinizde</span>
+          <span class="highlight">100₺ INDIRIM!</span>
+          <span class="fire">🔥</span>
+        </div>
+        <div class="marquee-content">
+          <span class="sparkle">✨</span>
+          <span class="highlight">MAĞAZA AÇILIŞINA ÖZEL</span>
+          <span class="fire">🔥</span>
+          <span>Bütün Ürünler <span class="highlight">İNDİRİMLİDİR</span></span>
+          <span class="gift">🎁</span>
+          <span class="highlight-blue">1000₺ ve Üzeri</span>
+          <span>Alışverişlerinizde</span>
+          <span class="highlight">100₺ INDIRIM!</span>
+          <span class="fire">🔥</span>
+        </div>
+      </div>
     </div>
   </div>
 
