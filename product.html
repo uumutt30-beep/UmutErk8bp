@@ -179,16 +179,18 @@
     .vip-tier.karaelmas { color: #8a2be2; }
     
     .vip-tier-badge {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
       flex-shrink: 0;
     }
     .vip-tier-badge img {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       object-fit: contain;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
     .vip-tier.selected .vip-tier-badge {
       animation: tierPulse 1.5s ease-in-out infinite;
@@ -486,11 +488,11 @@
       { id: 7, title: '20 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 5999.90, oldPrice: 7499.90, tags: ['coin'], img: '20 Milyar Coin.png', amount: '20 Milyar', type: 'coin' },
       { id: 8, title: '25 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 7499.90, oldPrice: 9374.90, tags: ['coin'], img: '25 Milyar Coin.png', amount: '25 Milyar', type: 'coin' },
       { id: 9, title: '50 Milyar Coin', subtitle: 'Hızlı teslim • Coin', price: 14599.90, oldPrice: 18249.90, tags: ['coin'], img: '50 Milyar Coin.png', amount: '50 Milyar', type: 'coin' },
-      // Cash ürünleri - baseAmount: VIP hesaplaması için ana miktar (Zümrüt x1.5 değil, direkt baz)
-      { id: 10, title: '9.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 999.90, oldPrice: 1249.90, tags: ['cash'], img: '9.000 Cash Paketi.png', amount: '9.000', type: 'cash', baseAmount: 6000 },
-      { id: 11, title: '18.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 1899.90, oldPrice: 2374.90, tags: ['cash'], img: '18.000 Cash Paketi.png', amount: '18.000', type: 'cash', baseAmount: 12000 },
-      { id: 12, title: '27.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 2799.90, oldPrice: 3499.90, tags: ['cash'], img: '27.000 Cash Paketi.png', amount: '27.000', type: 'cash', baseAmount: 18000 },
-      { id: 13, title: '36.000 Cash Paketi', subtitle: 'Hızlı teslim • Cash', price: 3799.90, oldPrice: 4749.90, tags: ['cash'], img: '36.000 Cash Paketi.png', amount: '36.000', type: 'cash', baseAmount: 24000 }
+      // Cash ürünleri - baseAmount: VIP hesaplaması için ana miktar
+      { id: 10, title: 'Başlangıç Cash Paketi', subtitle: '9.000 Cash • Hızlı teslim', price: 999.90, oldPrice: 1249.90, tags: ['cash'], img: '9.000 Cash Paketi.png', amount: '9.000', type: 'cash', baseAmount: 6000 },
+      { id: 11, title: 'Orta Cash Paketi', subtitle: '18.000 Cash • Hızlı teslim', price: 1899.90, oldPrice: 2374.90, tags: ['cash'], img: '18.000 Cash Paketi.png', amount: '18.000', type: 'cash', baseAmount: 12000 },
+      { id: 12, title: 'Legend Cash Paketi', subtitle: '27.000 Cash • Hızlı teslim', price: 2799.90, oldPrice: 3499.90, tags: ['cash'], img: '27.000 Cash Paketi.png', amount: '27.000', type: 'cash', baseAmount: 18000 },
+      { id: 13, title: 'Ultimate Cash Paketi', subtitle: '36.000 Cash • Hızlı teslim', price: 3799.90, oldPrice: 4749.90, tags: ['cash'], img: '36.000 Cash Paketi.png', amount: '36.000', type: 'cash', baseAmount: 24000 }
     ];
     
     const currency = (v) => '₺' + Number(v).toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
